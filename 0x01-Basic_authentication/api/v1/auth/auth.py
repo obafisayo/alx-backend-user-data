@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Auth module
 """
-from typing import TypeVar
+from typing import TypeVar, List
 from flask import request
 
 
