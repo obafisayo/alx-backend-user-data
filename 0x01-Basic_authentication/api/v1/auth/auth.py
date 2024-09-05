@@ -13,7 +13,21 @@ class Auth():
         pass
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """middleware to require auth"""
+        """Middleware to require auth"""
+        
+        if path is None:
+            return True
+
+        normalized_path = path.rstrip('/')
+
+        n_excluded_paths = [e_path.rstrip('/') for e_path in excluded_paths]
+
+        if not excluded_paths:
+            return True
+
+        if normalized_path not in n_excluded_paths:
+            return True
+
         return False
 
     def authorization_header(self, request=None) -> str:
