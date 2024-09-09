@@ -15,7 +15,7 @@ class Auth():
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Middleware to require auth"""
 
-        if path is None:
+        if path is None or excluded_paths is None:
             return True
 
         normalized_path = path.rstrip('/')
