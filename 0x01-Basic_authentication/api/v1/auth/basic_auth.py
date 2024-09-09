@@ -21,4 +21,4 @@ class BasicAuth(Auth):
             return None
         if authorization_header.split()[0] is not "Basic":
             return None
-        return authorization_header.split()[1] 
+        return authorization_header.split()[1]
