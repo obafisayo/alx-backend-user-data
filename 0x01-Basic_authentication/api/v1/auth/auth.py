@@ -13,8 +13,14 @@ class Auth():
         pass
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """Middleware to require auth"""
-
+        """Middleware to determine paths that require authentication
+        
+        Keyword arguments:
+        path -- path to be authorized
+        excluded_paths -- array of paths that do not need authorization
+        Return: returns true if the path is not in excluded_paths
+        """
+        
         if path is None or excluded_paths is None:
             return True
 
@@ -32,7 +38,13 @@ class Auth():
 
     def authorization_header(self, request=None) -> str:
         """middleware to authorize headers"""
-        return None
+        if request is None:
+            return None
+
+        if "Authorization" not in request.headers:
+            return None
+
+        return request.headers.get('Authorization', None)
 
     def current_user(self, request=None) -> TypeVar('User'):
         """middleware to check current user"""
