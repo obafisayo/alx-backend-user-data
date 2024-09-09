@@ -32,7 +32,7 @@ def authenticate_user():
             if auth.authorization_header(request) is None:
                 abort(401, description="Unauthorized")
             if auth.current_user(request) is None:
-                abort(403, description="Forbidden") 
+                abort(403, description="Forbidden")
 
 @app.errorhandler(404)
 def not_found(error) -> str:
