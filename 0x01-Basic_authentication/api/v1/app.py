@@ -18,6 +18,7 @@ auth_type = getenv('AUTH_TYPE', 'auth')
 if auth_type == 'auth':
     auth = Auth()
 
+
 @app.before_request
 def authenticate_user():
     """ authenticates a user before processing a request
@@ -33,6 +34,7 @@ def authenticate_user():
                 abort(401, description="Unauthorized")
             if auth.current_user(request) is None:
                 abort(403, description="Forbidden")
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
